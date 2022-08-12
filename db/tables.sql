@@ -12,5 +12,5 @@ CREATE TABLE IF NOT EXISTS workingdays (
 
 -- INSERT INTO waiters (username) VALUES ($1);
 -- INSERT INTO workingdays (waiter_id, workingday) VALUES((SELECT id FROM waiters WHERE username=$1 LIMIT 1), $2)
--- SELECT waiter.username, workingdays.workingday FROM waiters INNER JOIN workingdays ON waiters.id = workingdays.waiter_id;
--- SELECT waiter.username, workingdays.workingday FROM waiters INNER JOIN workingdays ON waiters.id = workingdays.waiter_id WHERE username = $1;
+-- SELECT waiters.username, workingdays.workingday FROM waiters INNER JOIN workingdays ON waiters.id = workingdays.waiter_id;
+-- SELECT waiters.username, workingdays.workingday FROM waiters INNER JOIN workingdays ON waiters.id = workingdays.waiter_id WHERE username = $1;
