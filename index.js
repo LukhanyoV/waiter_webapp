@@ -3,12 +3,17 @@ const exphbs = require("express-handlebars")
 const bodyParser = require("body-parser")
 const session = require("express-session")
 const flash = require("express-flash")
-
+const db = require("./db/db")
+const dbFunctions = require("./db/DbFunctions")(db)
+const routes = require("./routes")(dbFunctions)
 const app = express()
 
-app.engine("handlebars", exphbs.engine({defaultLayout: "main"}))
+app.engine("handlebars", exphbs.engine({
+    defaultLayout: "main"
+}))
 app.set("view engine", "handlebars")
 
+app.use(express.static("public"))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -19,30 +24,15 @@ app.use(session({
 }))
 app.use(flash())
 
-app.get("/", (req, res) => {
-    res.render("index")
-})
+app.get("/", routes.indexGet)
 
-app.post("/", (req, res) => {
-    const {username} = req.body
-    res.redirect(`/waiters/${username}`)
-})
+app.post("/", routes.indexPost)
 
-app.get("/days", (req, res) => {
-    res.render("days")
-})
+app.get("/days", routes.getDays)
 
-app.get("/waiters/:username", (req, res) => {
-    const {username} = req.params
-    res.render("waiters", {
-        username
-    })
-})
+app.get("/waiters/:username", routes.getWaiter)
 
-app.post("/waiters/:username", (req, res) => {
-    const {weekdays} = req.body
-    res.redirect("/days")
-})
+app.post("/waiters", routes.postWaiter)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`App running on PORT: ${PORT}`))
