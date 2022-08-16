@@ -30,9 +30,13 @@ app.post("/", routes.indexPost)
 
 app.get("/days", routes.getDays)
 
+app.get("/days/:day", routes.viewDay)
+
 app.get("/waiters/:username", routes.getWaiter)
 
 app.post("/waiters", routes.postWaiter)
+
+app.post("/clear", routes.clearWaiters)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`App running on PORT: ${PORT}`))
