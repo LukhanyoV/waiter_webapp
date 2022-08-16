@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Working Days for {{username}}</h1>
+    <p> <em>NOTE:</em> Please use the form below to choose which days you will be working in.</p>
+    <div class="message-home">
+        <h4 class="success flash">{{messages.success}}</h4>
+    </div>
+    <div class="form">
+        <form action="/waiters" method="post">
+            <input type="hidden" name="username" value="{{username}}">
+            <div class="days">
+            {{#each weekdays}}
+            <input type="checkbox" name="weekdays" id="{{this}}" value="{{this}}" {{checkday this}}>
+            <label for="{{this}}">
+                    {{upper this}}
+                </label>
+            {{/each}}
+            </div>
+            <button class="update-days" type="submit">UPDATE</button>
+        </form>
+    </div>
+</div>
