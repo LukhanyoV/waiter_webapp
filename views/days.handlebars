@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Waiters Available</h1>
+    <div class="key">
+        <h3>Meaning to the colors:</h3>
+        <div>
+            <div class="none" style="color: black;">No waiters</div>
+            <div class="success">Enough waiters</div>
+            <div class="warning">Waiters needed</div>
+            <div class="danger">Oversubscribed</div>
+        </div>
+    </div>
+    <div class="message">
+        <h4 class="success flash">{{messages.success}}</h4>
+    </div>
+    <p><em>NOTE:</em>Click on day to view the people working on that day!</p>
+    <div class="dayspanel">
+        {{#each weekdays}}
+        <table>
+            <tr>
+                <th class="{{color this}}"><a href="/days/{{this}}">{{this}}</a></th>
+            </tr>
+        </table>
+        {{/each}}
+    </div>
+    <form action="/clear" method="post">
+        <button class="clear-button" type="submit">CLEAR WAITERS</button>
+    </form>
+</div>
