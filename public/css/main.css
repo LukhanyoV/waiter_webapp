@@ -118,6 +118,11 @@ tr:first-child {
     color: #000;
 }
 
+a, a:visited {
+    text-decoration: none;
+    color: black;
+}
+
 /* VIEW DAY PAGE */
 ul {
     background-color: white;
@@ -175,13 +180,13 @@ input[type=checkbox] + label {
     margin: 0.2em;
     cursor: pointer;
     padding: 0.2em;
-    }
-    
-    input[type=checkbox] {
+}
+
+input[type=checkbox] {
     display: none;
-    }
-    
-    input[type=checkbox] + label:before {
+}
+
+input[type=checkbox] + label:before {
     content: "\002723 \00a0";
     border: 0.1em solid #000;
     border-radius: 0.2em;
@@ -194,15 +199,16 @@ input[type=checkbox] + label {
     vertical-align: bottom;
     color: transparent;
     transition: .2s;
-    }
-    
-    input[type=checkbox] + label:active:before {
+}
+
+input[type=checkbox] + label:active:before {
     transform: scale(0);
-    }
-    
-    input[type=checkbox]:checked + label:before {
+}
+
+input[type=checkbox]:checked + label:before {
     background-color: MediumSeaGreen;
     border-color: MediumSeaGreen;
     color: #fff;
-    }
-    /* end of custom checkbox */
+}
+/* end of custom checkbox */
+
