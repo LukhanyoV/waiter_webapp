@@ -81,6 +81,13 @@ const Routes = dbFunctions => {
         res.redirect("back")
     }
 
+    const clearDay = async (req, res) => {
+        const {day} = req.params
+        await dbFunctions.clearDay(day)
+        req.flash("success", "Waiters have been cleared for this day!")
+        res.redirect("back")
+    }
+
     return {
         indexGet,
         indexPost,
@@ -88,7 +95,8 @@ const Routes = dbFunctions => {
         getWaiter,
         postWaiter,
         clearWaiters,
-        viewDay
+        viewDay,
+        clearDay
     }
 }
 
