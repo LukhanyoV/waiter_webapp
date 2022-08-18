@@ -1,6 +1,9 @@
 <div class="container">
     <h1>Waiters Available on {{day}}</h1>
-    <p> <em>NOTE:</em> Click on a waiter's name to update their working day</p>
+    <p> <em>NOTE:</em> Click on a waiter's name to update their working days</p>
+    <div class="message">
+        <h4 class="success flash">{{messages.success}}</h4>
+    </div>
     <div class="dayspanel">
         <ul>
         {{#each waiters}}
@@ -10,5 +13,11 @@
             <li>No waiter available</li>
         {{/unless}}
         </ul>
+        
     </div>
+    {{#if waiters}}
+    <form action="/clear/{{day}}" method="post">
+        <button type="submit">CLEAR WAITERS</button>
+    </form>
+    {{/if}}
 </div>
