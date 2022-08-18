@@ -9,9 +9,9 @@
             <input type="hidden" name="username" value="{{username}}">
             <div class="days">
             {{#each weekdays}}
-            <input type="checkbox" name="weekdays" id="{{this}}" value="{{this}}" {{checkday this}}>
-            <label for="{{this}}">
-                    {{upper this}}
+            <input type="checkbox" name="weekdays" id="{{week_day}}" value="{{id}}" {{checkday id}}>
+            <label for="{{week_day}}">
+                    {{upper week_day}}
                 </label>
             {{/each}}
             </div>
