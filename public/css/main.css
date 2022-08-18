@@ -144,6 +144,15 @@ ul a {
     width: 100%;
 }
 
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+ul li:hover {
+    background-color: #04AA6D;
+}
+
 /* NAVIGATION BAR */
 /* Add a black background color to the top navigation */
 .topnav {
