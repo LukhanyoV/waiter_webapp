@@ -67,6 +67,12 @@ const DbFunctions = (db) => {
         await db.none('TRUNCATE workingdays')
     }
 
+    // clear waiters for specific day
+    const clearDay = async (day) => {
+        const id = await db.one('SELECT id FROM weekdays WHERE week_day = $1', [day.toLowerCase()]) 
+        await db.none('DELETE FROM workingdays WHERE workingday = $1', [id.id])
+    }
+
     return {
         addWaiter,
         addWorkDay,
@@ -75,7 +81,8 @@ const DbFunctions = (db) => {
         counterDay,
         clearWaiters,
         getWeekdays,
-        waitersFor
+        waitersFor,
+        clearDay
     }
 }
 
