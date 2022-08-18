@@ -124,32 +124,32 @@ a, a:visited {
 }
 
 /* VIEW DAY PAGE */
-ul {
+.dayspanel ul {
     background-color: white;
     color: white;
     padding: 1em;
     width: 350px;
 }
 
-ul li {
+.dayspanel ul li {
     padding: 1em;
     background-color: #333;
     list-style: none;
     margin: 1em 0;
 }
 
-ul a {
+.dayspanel ul a {
     color: white;
     text-decoration: none;
     width: 100%;
 }
 
-a:visited {
+.dayspanel ul a:visited {
     color: white;
     text-decoration: none;
 }
 
-ul li:hover {
+.dayspanel ul li:hover {
     background-color: #04AA6D;
 }
 
