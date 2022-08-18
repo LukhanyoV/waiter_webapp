@@ -1,9 +1,10 @@
 <div class="container">
     <h1>Waiters Available on {{day}}</h1>
+    <p> <em>NOTE:</em> Click on a waiter's name to update their working day</p>
     <div class="dayspanel">
         <ul>
         {{#each waiters}}
-            <li>{{username}}</li>
+            <a href="/waiters/{{username}}"><li>{{username}}</li></a> 
         {{/each}}
         {{#unless waiters}}
             <li>No waiter available</li>
