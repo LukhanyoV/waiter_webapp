@@ -44,6 +44,18 @@ const DbFunctions = (db) => {
         return results
     }
 
+    // get waiters for specific day
+    const waitersFor = async (day) => {
+        const results = db.manyOrNone('SELECT waiters.username FROM waiters INNER JOIN workingdays ON waiters.id = workingdays.waiter_id INNER JOIN weekdays ON workingdays.workingday = weekdays.id WHERE weekdays.week_day = $1', [day])
+        return results
+    }
+
+    // get all the weekdays
+    const getWeekdays = async () => {
+        const results = await db.many('SELECT * FROM weekdays')
+        return results
+    }
+
     // count number of people for that day
     const counterDay = async (day) => {
         const results = await db.oneOrNone('SELECT count(*) FROM workingdays WHERE workingday = $1', [day])
@@ -61,7 +73,9 @@ const DbFunctions = (db) => {
         getDaysFor,
         getDays,
         counterDay,
-        clearWaiters
+        clearWaiters,
+        getWeekdays,
+        waitersFor
     }
 }
 
