@@ -21,7 +21,7 @@ const Routes = dbFunctions => {
 
     const getDays = async (req, res) => {
         const days = await dbFunctions.getDays()
-        const weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+        const weekdays = await dbFunctions.getWeekdays()
         const color = (day) => {
             const count = days.filter(user=>user.workingday === day).length
             if(count === 0) return "none"
@@ -38,25 +38,22 @@ const Routes = dbFunctions => {
     }
 
     const viewDay = async (req, res) => {
-        const days = await dbFunctions.getDays()
-        const sameday = (day) => {
-            const results = days.filter(user=>user.workingday === day).map(user=>user.username)
-            return results.length !== 0 ? results : ""
-        }
         let {day} = req.params
         day = day[0].toUpperCase()+day.slice(1).toLowerCase()
+        const waiters = await dbFunctions.waitersFor(day.toLowerCase())
         res.render("viewday", {
             day,
-            waiters: sameday(day.toLowerCase())
+            waiters
         })
     }
 
     const getWaiter = async (req, res) => {
         const {username} = req.params
+        const weekdays = await dbFunctions.getWeekdays()
         const days = await dbFunctions.getDaysFor(username)
         res.render("waiters", {
             username,
-            weekdays: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+            weekdays,
             helpers: {
                 checkday: day => {
                     if(days.includes(day)){
