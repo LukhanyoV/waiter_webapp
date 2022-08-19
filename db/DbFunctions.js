@@ -18,7 +18,7 @@ const DbFunctions = (db) => {
     // add user availability for that day
     const addWorkDay = async (waiter, days) => {
         let waiter_id = await db.one('SELECT id FROM waiters WHERE username=$1 LIMIT 1', [waiter])
-        waiter_id = waiter_id?.id
+        waiter_id = waiter_id.id
 
         // delete the old working days from the user and accept the incoming one as update
         await db.none('DELETE FROM workingdays WHERE waiter_id = $1', [waiter_id])
@@ -58,8 +58,8 @@ const DbFunctions = (db) => {
 
     // count number of people for that day
     const counterDay = async (day) => {
-        const results = await db.oneOrNone('SELECT count(*) FROM workingdays WHERE workingday = $1', [day])
-        return results?.count
+        const results = await db.one('SELECT count(*) FROM workingdays WHERE workingday = $1', [day])
+        return results.count
     }
 
     // clear waiters for a new week
