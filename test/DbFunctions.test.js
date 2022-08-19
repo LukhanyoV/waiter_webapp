@@ -20,7 +20,7 @@ describe("Testing my Waiter App queries", () => {
         assert.equal(false, await dbFunction.userExists("Zeenat"))
     })
 
-    it("Should be able to add user on working days table", () => {
+    it("Should be able to add user on working days table", async () => {
         const dbFunction = DbFunctions(db)
         await dbFunction.addWaiter("Lukhanyo")
 
