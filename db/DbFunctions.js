@@ -82,7 +82,8 @@ const DbFunctions = (db) => {
         clearWaiters,
         getWeekdays,
         waitersFor,
-        clearDay
+        clearDay,
+        userExists
     }
 }
 
