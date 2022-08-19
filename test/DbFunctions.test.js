@@ -42,7 +42,7 @@ describe("Testing my Waiter App queries", () => {
         assert.equal(7, weekdays.length)
     })
 
-    it("Should be able to get waiters for specific working day", () => {
+    it("Should be able to get waiters for specific working day", async () => {
         const dbFunction = DbFunctions(db)
         await dbFunction.addWaiter("Lukhanyo")
         await dbFunction.addWaiter("Emihle")
