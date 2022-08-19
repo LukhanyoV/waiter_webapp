@@ -41,4 +41,26 @@ describe("Testing my Waiter App queries", () => {
         const weekdays = await dbFunction.getWeekdays()
         assert.equal(7, weekdays.length)
     })
+
+    it("Should be able to get waiters for specific working day", () => {
+        const dbFunction = DbFunctions(db)
+        await dbFunction.addWaiter("Lukhanyo")
+        await dbFunction.addWaiter("Emihle")
+
+        await dbFunction.addWorkDay("Lukhanyo", [1,2,3,4,5])
+        await dbFunction.addWorkDay("Emihle", "1")
+
+        // get waiters for monday
+        const waitersMonday = await dbFunction.waitersFor("monday")
+        assert.equal(2, waitersMonday.length)
+
+
+        // get waiters for friday
+        const waitersFriday = await dbFunction.waitersFor("friday")
+        assert.equal(1, waitersFriday.length)
+
+        // get waiters for sunday
+        const waiterSunday = await dbFunction.waitersFor("sunday")
+        assert.equal(0, waiterSunday.length)
+    })
 })
