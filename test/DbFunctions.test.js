@@ -26,7 +26,7 @@ describe("Testing my Waiter App queries", () => {
 
         await dbFunction.addWorkDay("Lukhanyo", [1,2,3,4,5])
 
-        const days = dbFunction.getDaysFor("Lukhanyo")
+        const days = await dbFunction.getDaysFor("Lukhanyo")
 
         assert.equal(5, await days.length)
     })
