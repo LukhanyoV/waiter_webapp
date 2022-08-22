@@ -64,7 +64,7 @@ describe("Testing my Waiter App queries", () => {
         assert.equal(0, waiterSunday.length)
     })
 
-    it("Should be able to clear waiter from a specified day", async () => {
+    it("Should be able to clear waiters from a specified day", async () => {
         const dbFunction = DbFunctions(db)
         await dbFunction.addWaiter("Lukhanyo")
         await dbFunction.addWaiter("Emihle")
@@ -81,5 +81,28 @@ describe("Testing my Waiter App queries", () => {
 
         waitersMonday = await dbFunction.waitersFor("monday")
         assert.equal(0, waitersMonday.length)
+    })
+    
+    it("Should be able to clear individual waiter from a specified day", async () => {
+        const dbFunction = DbFunctions(db)
+        await dbFunction.addWaiter("Lukhanyo")
+        await dbFunction.addWaiter("Emihle")
+        await dbFunction.addWaiter("Vakele")
+
+        await dbFunction.addWorkDay("Lukhanyo", [1,2,3,4,5])
+        await dbFunction.addWorkDay("Emihle", "1")
+        await dbFunction.addWorkDay("Vakele", [1,3,4])
+
+        // test to check how many waiter we have on monday
+        let waitersMonday = await dbFunction.waitersFor("monday")
+        assert.equal(3, waitersMonday.length)
+
+        // remove waiter Vakele from monday
+        await dbFunction.removeUser('monday', 'Vakele')
+
+        // check how many user remaining after
+        waitersMonday = await dbFunction.waitersFor("monday")
+        // returns 2 since we had three and removed one
+        assert.equal(2, waitersMonday.length)
     })
 })
