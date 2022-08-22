@@ -73,6 +73,13 @@ const DbFunctions = (db) => {
         await db.none('DELETE FROM workingdays WHERE workingday = $1', [id.id])
     }
 
+    // remove user from given day
+    const removeUser = async (day, user) => {
+        let {id: user_id} = await db.one('SELECT id FROM waiters WHERE username = $1', [user])
+        let {id: day_id} = await db.one('SELECT id FROM weekdays WHERE week_day = $1', [day])
+        await db.none('DELETE FROM workingdays WHERE waiter_id = $1 AND workingday = $2', [user_id, day_id])
+    }
+
     return {
         addWaiter,
         addWorkDay,
@@ -83,7 +90,8 @@ const DbFunctions = (db) => {
         getWeekdays,
         waitersFor,
         clearDay,
-        userExists
+        userExists,
+        removeUser
     }
 }
 
