@@ -7,7 +7,20 @@
     <div class="dayspanel">
         <ul>
         {{#each waiters}}
-            <a href="/waiters/{{username}}"><li>{{username}}</li></a> 
+            <li>
+                <div class="row">
+                    <div class="col-8-sm">
+                        {{username}}
+                    </div>
+                    <div class="col-4-sm">
+                        <form action="" method="post">
+                            <input type="hidden" name="user" value="{{username}}">
+                            <button type="submit">REMOVE</button>
+                        </form>
+                    </div>
+                    <hr>
+                </div>
+            </li>
         {{/each}}
         {{#unless waiters}}
             <li>No waiter available</li>

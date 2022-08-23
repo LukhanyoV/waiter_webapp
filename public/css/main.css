@@ -126,28 +126,16 @@ a, a:visited {
 }
 
 /* VIEW DAY PAGE */
-.dayspanel ul {
-    padding: 1em;
-    background-color: white;
+ ul {
+    padding: 0.5em;
     color: white;
-    width: 350px;
-}
-
-.dayspanel ul li {
-    background-color: white;
-    list-style: none;
-    margin: 1em 0;
-}
-
-.dayspanel ul a {
-    color: white;
-    text-decoration: none;
     width: 100%;
 }
 
-.dayspanel ul a:visited {
-    color: white;
-    text-decoration: none;
+ ul li {
+    list-style: none;
+    margin: 1em 0;
+    padding: 0 0.3em;
 }
 
 /* NAVIGATION BAR */
