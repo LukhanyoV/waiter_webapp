@@ -1,5 +1,6 @@
 const Routes = dbFunctions => {
     const indexGet = async (req, res) => {
+        
         res.render("index")
     }
 
@@ -25,9 +26,9 @@ const Routes = dbFunctions => {
         const color = (day) => {
             const count = days.filter(user=>user.workingday === day).length
             if(count === 0) return "none"
-            if(count < 3) return "warning"
-            if(count === 3) return "success"
-            if(count > 3) return "danger"
+            if(count < 3) return "warning-bg"
+            if(count === 3) return "success-bg"
+            if(count > 3) return "danger-bg"
         }
         res.render("days", {
             weekdays,
@@ -88,6 +89,14 @@ const Routes = dbFunctions => {
         res.redirect("back")
     }
 
+    const removeUser = async (req, res) => {
+        const {day} = req.params
+        const {user} = req.body
+        await dbFunctions.removeUser(day, user)
+        req.flash("success", `${user} has been removed for ${day}!`)
+        res.redirect("back")
+    }
+
     return {
         indexGet,
         indexPost,
@@ -96,7 +105,8 @@ const Routes = dbFunctions => {
         postWaiter,
         clearWaiters,
         viewDay,
-        clearDay
+        clearDay,
+        removeUser
     }
 }
 
