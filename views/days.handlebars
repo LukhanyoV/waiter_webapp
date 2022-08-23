@@ -1,21 +1,21 @@
 <div class="container">
-    <h1>Waiters Available</h1>
-    <div class="key">
+    <h2>Waiters Available</h2>
+    <div class="row">
         <h3>Meaning to the colors:</h3>
-        <div>
-            <div class="none" style="color: black;">No waiters</div>
-            <div class="success">Enough waiters</div>
-            <div class="warning">Waiters needed</div>
-            <div class="danger">Oversubscribed</div>
-        </div>
+        <ul>
+            <li class="col none" style="color: black;">No waiters</li>
+            <li class="col success-bg">Enough waiters</li>
+            <li class="col warning-bg">Waiters needed</li>
+            <li class="col danger-bg">Oversubscribed</li>
+        </ul>
     </div>
     <div class="message">
         <h4 class="success flash">{{messages.success}}</h4>
     </div>
     <p><em>NOTE:</em>Click on day to view the people working on that day!</p>
-    <div class="dayspanel">
+    <div class="row">
         {{#each weekdays}}
-        <table>
+        <table class="col-4">
             <tr>
                 <th class="{{color id}}"><a href="/days/{{week_day}}">{{week_day}}</a></th>
             </tr>
