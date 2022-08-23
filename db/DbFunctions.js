@@ -46,7 +46,7 @@ const DbFunctions = (db) => {
 
     // get waiters for specific day
     const waitersFor = async (day) => {
-        const results = db.manyOrNone('SELECT waiters.username FROM waiters INNER JOIN workingdays ON waiters.id = workingdays.waiter_id INNER JOIN weekdays ON workingdays.workingday = weekdays.id WHERE weekdays.week_day = $1', [day])
+        const results = await db.manyOrNone('SELECT waiters.username FROM waiters INNER JOIN workingdays ON waiters.id = workingdays.waiter_id INNER JOIN weekdays ON workingdays.workingday = weekdays.id WHERE weekdays.week_day = $1', [day])
         return results
     }
 
